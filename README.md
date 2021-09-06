@@ -1,2 +1,2 @@
 # raw_data_parser
-raw data pasers (fastq, mzml) and their work
+raw data pasers (fastq, mzml) and their work flow
