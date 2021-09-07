@@ -2,7 +2,6 @@
 
 import gzip
 import re
-from collections import OrderedDict
 
 
 rx_pattern = r"@(?P<instrument>[a-zA-Z0-9-_]+):" \
@@ -17,10 +16,6 @@ rx_pattern = r"@(?P<instrument>[a-zA-Z0-9-_]+):" \
              r"(?P<is_filtered>[YN]):" \
              r"(?P<control_number>[0-9]+):" \
              r"(?P<index>[ACGTN])"
-
-
-def return_module_name():
-    print("fastq_parser module loaded")
 
 
 def read_header(filename):
