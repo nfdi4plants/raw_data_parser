@@ -15,11 +15,13 @@ verbose = False
 if args.verbose:
     verbose = True
 
+
 def main():
     if args.parser == "fastq":
         fastq_parser.return_module_name()
     elif args.parser == "mzml":
         mzml_parser.return_module_name()
+
 
 if __name__ == '__main__':
     main()
