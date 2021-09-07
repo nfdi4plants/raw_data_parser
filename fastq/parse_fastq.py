@@ -5,7 +5,18 @@ import re
 from collections import OrderedDict
 
 
-rx_pattern = r"@([a-zA-Z0-9-_]+):([0-9]+):([a-zA-Z0-9]+):([0-9]+):([0-9]+):([0-9]+):([0-9]+):?[ACGTN+]* ([12]):([YN]):([0-9]+):([ACGTN])"
+rx_pattern = r"@(?P<instrument>[a-zA-Z0-9-_]+):" \
+             r"(?P<run_number>[0-9]+):" \
+             r"(?P<flowcell_ID>[a-zA-Z0-9]+):" \
+             r"(?P<lane>[0-9]+):" \
+             r"(?P<tile>[0-9]+):" \
+             r"(?P<xpos>[0-9]+):" \
+             r"(?P<ypos>[0-9]+):?" \
+             r"(?P<umi>[ACGTN+]*) " \
+             r"(?P<read>[12]):" \
+             r"(?P<is_filtered>[YN]):" \
+             r"(?P<control_number>[0-9]+):" \
+             r"(?P<index>[ACGTN])"
 
 
 def return_module_name():
@@ -24,21 +35,7 @@ def read_header(filename):
 def check_header(header):
     rx_match = re.match(rx_pattern, header)
 
-    if not rx_match:
-        return None
-    elif len(rx_match.groups()) == 11:
-        return OrderedDict({
-            "instrument": rx_match.group(1),
-            "run_number": rx_match.group(2),
-            "flowcell_ID": rx_match.group(3),
-            "lane": rx_match.group(4),
-            "tile": rx_match.group(5),
-            "xpos": rx_match.group(6),
-            "ypos": rx_match.group(7),
-            "read": rx_match.group(8),
-            "is_filtered": rx_match.group(9),
-            "control_number": rx_match.group(10),
-            "sample_number": rx_match.group(11)
-        })
+    if rx_match:
+        return rx_match.groupdict()
     else:
-        raise ValueError("ERROR: Check RegEx and header, it should return 12 fields.\n" + rx_match.groups())
+        return None
