@@ -2,7 +2,7 @@
 
 import argparse
 
-from fastq import fastq_parser
+from fastq import parse_fastq
 from mzml import mzml_parser
 
 parser = argparse.ArgumentParser()
@@ -18,8 +18,8 @@ if args.verbose:
 
 def main():
     if args.parser == "fastq":
-        header = fastq_parser.read_header(args.input)
-        parsed_header = fastq_parser.check_header(header)
+        header = parse_fastq.read_header(args.input)
+        parsed_header = parse_fastq.check_header(header)
         print(parsed_header)
     elif args.parser == "mzml":
         mzml_parser.return_module_name()
