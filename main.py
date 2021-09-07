@@ -18,7 +18,9 @@ if args.verbose:
 
 def main():
     if args.parser == "fastq":
-        fastq_parser.return_module_name()
+        header = fastq_parser.read_header(args.input)
+        parsed_header = fastq_parser.check_header(header)
+        print(parsed_header)
     elif args.parser == "mzml":
         mzml_parser.return_module_name()
 
