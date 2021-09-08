@@ -22,7 +22,7 @@ def main():
         parsed_header = parse_fastq.check_header(header)
         print(parsed_header)
     elif args.parser == "mzml":
-        mzml_parser.return_module_name()
+        mzml_parser.mzml_metadata_parser(args.input )
 
 
 if __name__ == '__main__':
