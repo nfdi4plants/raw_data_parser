@@ -1,0 +1,7 @@
+src:
+  class: File
+  path: main.py
+firstArg: memem
+  class: File
+  path: mzml/example.mzml
+secondArg: mzml
