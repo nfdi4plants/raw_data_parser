@@ -23,4 +23,5 @@ inputs:
       position: 3
 outputs:
   example_out:
-    type: stdout
+    type: file
+	path: mzml_metadata.json
